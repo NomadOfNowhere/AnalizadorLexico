@@ -7,6 +7,8 @@ namespace ProyectoAnalizadorLexico {
         public int j;
         public HashSet<Estado> ConjI;
         public int[] TransicionesAFD;
+        public Boolean aceptacion = false;
+        public int Idj; //!
 
         public ConjIj(int CardAlf) {
             j = -1;
@@ -83,7 +85,7 @@ namespace ProyectoAnalizadorLexico {
             Estado e2 = new Estado();
             // el estado tendrá dos transiciones epsilon, una al edo inicial del afn this, ???
             Transicion t1 = new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni);
-            Transicion t1 = new Transicion(SimbolosEspeciales.EPSILON, f2.EdoIni);
+            Transicion t2 = new Transicion(SimbolosEspeciales.EPSILON, f2.EdoIni);
             _ = e1.Trans.Add(t1);
             _ = e1.Trans.Add(t2);
 
@@ -97,7 +99,7 @@ namespace ProyectoAnalizadorLexico {
                 _ = e.EdoAcept = false;
             }
             foreach(Estado e in f2.EdosAcept) {
-                _ = e.Trans.Add(new Transicion(simbolosEspeciales.EPSILON), e2);
+                _ = e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
                 _ = e.EdoAcept = false;
             }
 
@@ -113,7 +115,7 @@ namespace ProyectoAnalizadorLexico {
             this.EdosAFN.UnionWith(f2.EdosAFN);
             this.EdosAFN.Add(e1);
             this.EdosAFN.Add(e2);
-            this.AlfabetoUnionWith(f2.Alfabeto);
+            this.Alfabeto.UnionWith(f2.Alfabeto);
             return this;
         }
 
@@ -155,7 +157,7 @@ namespace ProyectoAnalizadorLexico {
             EdosAcept.Clear();
             EdosAcept.Add(e_fin);
             EdosAFN.Add(e_ini);
-            EdosAfn.Add(e_fin);
+            EdosAFN.Add(e_fin);
             return this;
         }
 
@@ -208,7 +210,7 @@ namespace ProyectoAnalizadorLexico {
 
         public HashSet<Estado> CerraduraEpsilon(Estado e) {
             HashSet<Estado> R = new HashSet<Estado>();
-            Stack<EStado> S = new Stack<Estado>();
+            Stack<Estado> S = new Stack<Estado>();
             Estado aux, Edo;
 
             R.Clear();
@@ -221,7 +223,7 @@ namespace ProyectoAnalizadorLexico {
                 R.Add(aux);
 
                 foreach(Transicion t in aux.Trans) {
-                    if((Edo = T.GetEdoTRans(SimbolosEspeciales.EPSILON)) != null) {
+                    if((Edo = t.GetEdoTrans(SimbolosEspeciales.EPSILON)) != null) {
                         if(!R.Contains(Edo)) {
                             S.Push(Edo);
                         }
@@ -248,7 +250,7 @@ namespace ProyectoAnalizadorLexico {
                 R.Add(aux);
                 foreach(Transicion t in aux.Trans) {
                     if((Edo = t.GetEdoTrans(SimbolosEspeciales.EPSILON)) != null) {
-                        if(!R.COntains(Edo)) {
+                        if(!R.Contains(Edo)) {
                             S.Push(Edo);
                         }
                     }
@@ -265,7 +267,7 @@ namespace ProyectoAnalizadorLexico {
 
             foreach(Estado Edo in Edos) {
                 foreach(Transicion t in Edo.Trans) {
-                    Aux = t.GetEdoTRans(Simb);
+                    Aux = t.GetEdoTrans(Simb);
                     if(Aux != null) {
                         C.Add(Aux);
                     }
@@ -304,7 +306,7 @@ namespace ProyectoAnalizadorLexico {
                 EdoAcep.Token = Token;
 
                 this.EdosAcept.UnionWith(f.EdosAcept);
-                this.EDosAFN.UnionWith(f.EdosAFN);
+                this.EdosAFN.UnionWith(f.EdosAFN);
                 this.Alfabeto.UnionWith(f.Alfabeto);
             }
         }
@@ -323,12 +325,12 @@ namespace ProyectoAnalizadorLexico {
             int CardAlfabeto, NumEdosAFD;
             int i, j, r;
             char[] ArrAlfabeto;
-            ConIj Ij, Ik;
+            ConjIj Ij, Ik;
             bool existe;
 
             HashSet<Estado> ConjAux = new HashSet<Estado>();
-            HashSet<ConIj> EdosAFD = new HashSet<ConjIj>();
-            Queue<ConjIj> EdosSinAnalizar = new Queue<ConIj>();
+            HashSet<ConjIj> EdosAFD = new HashSet<ConjIj>();
+            Queue<ConjIj> EdosSinAnalizar = new Queue<ConjIj>();
 
             EdosAFD.Clear();
             EdosSinAnalizar.Clear();
@@ -342,7 +344,7 @@ namespace ProyectoAnalizadorLexico {
             }
 
             j = 0;    // Contador para los estados del AFD
-            Ij = new ConIj(CardAlfabeto) {
+            Ij = new ConjIj(CardAlfabeto) {
                 ConjI = CerraduraEpsilon(this.EdoIni),
                 j = j
             };
@@ -377,7 +379,7 @@ namespace ProyectoAnalizadorLexico {
                                 Hay que obtener el indice r de la columna del
                             */
                             r = IndiceCaracter(ArrAlfabeto, c);
-                            IJ.TransicionesAFD[r] = I.j;
+                            Ij.TransicionesAFD[r] = I.j;
                             break;
                         }
                     }
@@ -394,6 +396,29 @@ namespace ProyectoAnalizadorLexico {
             }
 
             NumEdosAFD = j;
+            foreach(ConjIj I in EdosAFD)
+            {
+                ConjAux.Clear();
+                ConjAux.UnionWith(I.ConjI);
+                ConjAux.IntersectWith(EdosAcept);
+
+                if (ConjAux.Count() != 0)
+                {
+                    foreach(Estado EdoAcept in ConjAux)
+                    {
+                        I.TransicionesAFD[255] = EdoAcept.Token;
+                        I.aceptacion = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    I.TransicionesAFD[255] = -1;
+                }
+            }
+           
+            AFD nuevoAFD = new AFD(NumEdosAFD, EdosAFD);
+            return nuevoAFD;
         }
     }
 }

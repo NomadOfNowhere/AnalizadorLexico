@@ -102,8 +102,6 @@ namespace ProyectoAnalizadorLexico {
             return CadenaSigma.Substring(IndiceCaracterActual, CadenaSigma.Length - IndiceCaracterActual);
         }
 
-        {
-
         public int yylex() {
             while(true) {
                 Pila.Push(IndiceCaracterActual);
@@ -118,7 +116,7 @@ namespace ProyectoAnalizadorLexico {
                 token = -1;
 
                 while(IndiceCaracterActual < CadenaSigma.Length) {
-                    CaracterActual = CadenaSigma(IndiceCaracterActual);
+                    CaracterActual = CadenaSigma[IndiceCaracterActual];
                     EdoTransicion = AutomataFD.TablaAFD[EdoActual, CaracterActual];
                     if(EdoTransicion != -1) {
                         if(AutomataFD.TablaAFD[EdoTransicion, 256] != -1) {
