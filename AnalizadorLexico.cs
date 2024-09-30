@@ -1,4 +1,8 @@
-namespace AnalizadorLexico {
+using ProyectoAnalizadorLexico;
+using System;
+using System.Collections.Generic;
+
+namespace ProyectoAnalizadorLexico {
     class AnalizLexico {
         int token, EdoActual, EdoTransicion;
         string CadenaSigma;
@@ -39,7 +43,7 @@ namespace AnalizadorLexico {
             FinLexema = -1;
             IndiceCaracterActual = 0;
             token = -1;
-            Pila.clear();
+            Pila.Clear();
             // AutomataFD.LeerAFDdeArchivo(FileAFD, -1);
         }
 
@@ -95,8 +99,10 @@ namespace AnalizadorLexico {
         }
 
         public string CadenaXAnalizar() {
-            return CadenaSigma.Substring(IndiceCaracterActual, CadenaXAnalizar.Length - IndiceCaracterActual);
+            return CadenaSigma.Substring(IndiceCaracterActual, CadenaSigma.Length - IndiceCaracterActual);
         }
+
+        {
 
         public int yylex() {
             while(true) {
@@ -112,7 +118,7 @@ namespace AnalizadorLexico {
                 token = -1;
 
                 while(IndiceCaracterActual < CadenaSigma.Length) {
-                    CaracterActual = CadenaSigma{IndiceCaracterActual};
+                    CaracterActual = CadenaSigma(IndiceCaracterActual);
                     EdoTransicion = AutomataFD.TablaAFD[EdoActual, CaracterActual];
                     if(EdoTransicion != -1) {
                         if(AutomataFD.TablaAFD[EdoTransicion, 256] != -1) {

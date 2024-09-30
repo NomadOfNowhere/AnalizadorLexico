@@ -12,3 +12,4 @@
 /home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.pdb
 /home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.genruntimeconfig.cache
 /home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/ref/compiProyecto.dll
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.sourcelink.json
