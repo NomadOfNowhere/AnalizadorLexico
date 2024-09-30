@@ -1,0 +1,14 @@
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/bin/Debug/net8.0/compiProyecto
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/bin/Debug/net8.0/compiProyecto.deps.json
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/bin/Debug/net8.0/compiProyecto.runtimeconfig.json
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/bin/Debug/net8.0/compiProyecto.dll
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/bin/Debug/net8.0/compiProyecto.pdb
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.GeneratedMSBuildEditorConfig.editorconfig
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.AssemblyInfoInputs.cache
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.AssemblyInfo.cs
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.csproj.CoreCompileInputs.cache
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.dll
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/refint/compiProyecto.dll
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.pdb
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/compiProyecto.genruntimeconfig.cache
+/home/nomad/Documents/C_projects/compiladores_proyecto/compiProyecto/obj/Debug/net8.0/ref/compiProyecto.dll
