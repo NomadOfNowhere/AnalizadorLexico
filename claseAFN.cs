@@ -163,47 +163,47 @@ namespace ProyectoAnalizadorLexico {
 
         public AFN CerrKleen() {
             // Se crea un nuevo edo inicial y un nuevo edo  de aceptación
-            Estado e_ini = new Estado();
-            Estado e_fin = new Estado();
+            Estado e1 = new Estado();
+            Estado e2 = new Estado();
 
-            e_ini.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, EdoIni));
-            e_ini.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e_fin));
+            e1.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, EdoIni));
+            e1.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
 
             foreach(Estado e in EdosAcept) {
-                e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e_fin));
+                e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
                 e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, EdoIni));
                 e.EdoAcept = false;
             }
 
-            EdoIni = e_ini;
-            e_fin.EdoAcept = true;
+            EdoIni = e1;
+            e2.EdoAcept = true;
             EdosAcept.Clear();
-            EdosAcept.Add(e_fin);
-            EdosAFN.Add(e_ini);
-            EdosAFN.Add(e_fin);
+            EdosAcept.Add(e2);
+            EdosAFN.Add(e1);
+            EdosAFN.Add(e2);
 
             return this;
         }
 
         public AFN Opcional() {
             // Se crea un nuevo edo inicial y un nuevo edo de aceptación
-            Estado e_ini = new Estado();
-            Estado e_fin = new Estado();
+            Estado e1 = new Estado();
+            Estado e2 = new Estado();
 
-            e_ini.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, EdoIni));
-            e_ini.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e_fin));
+            e1.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, this.EdoIni));
+            e1.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
 
             foreach(Estado e in EdosAcept) {
-                e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e_fin));
+                e.Trans.Add(new Transicion(SimbolosEspeciales.EPSILON, e2));
                 e.EdoAcept = false;
             }
 
-            EdoIni = e_ini;
-            e_fin.EdoAcept = true;
-            EdosAcept.Clear();
-            EdosAcept.Add(e_fin);
-            EdosAFN.Add(e_ini);
-            EdosAFN.Add(e_fin);
+            this.EdoIni = e1;
+            e2.EdoAcept = true;
+            this.EdosAcept.Clear();
+            this.EdosAcept.Add(e2);
+            this.EdosAFN.Add(e1);
+            this.EdosAFN.Add(e2);
 
             return this;
         }

@@ -156,5 +156,4 @@ namespace ProyectoAnalizadorLexico {
             return true;
         }
     }
-
 }
