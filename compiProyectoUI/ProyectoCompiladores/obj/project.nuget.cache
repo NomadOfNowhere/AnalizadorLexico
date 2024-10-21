@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M3bd6i8DVoAOZZhgMViHCa3xXfmQ8VdPcZa1/ys63QIMwHj3UyWNaRrgmkNAHv9/V55h74RrVaTQSBZiNUiDbA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Joshua\\source\\repos\\ProyectoCompiladores\\ProyectoCompiladores.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Joshua\\.nuget\\packages\\fontawesome.sharp\\6.6.0\\fontawesome.sharp.6.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}
