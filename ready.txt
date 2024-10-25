@@ -3,6 +3,3 @@ Listo:
 -ClaseSimbolosEspeciales
 -ClaseEstado
 
-
-https://github.com/danxnya/LexicalAnalyzer.danna/blob/main/src/AFN.ts
-https://github.com/Jose-Costa-M/Proyecto-Compiladores-Ortigoza-ESCOM/blob/master/Forms/FormBasico.cs
